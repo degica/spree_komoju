@@ -1,5 +1,21 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  hello: "Hello world"
+  spree:
+    instruction:
+      bank_transfer: "Instruction Bank Transfer: %{expires_at} %{bank_number} %{order_id}"
+      konbini: "Instruction Konbini: %{expires_at} %{receipt} %{confirmation_code}"
+      pay_easy: "Instruction Pay Easy: %{expires_at} %{pay_url}"
+    convenience:
+      convenience:
+      lawson: Lawson
+      family-mart: Family Mart
+      sunkus: Sunkus
+      circle-k: Circle K
+      ministop: Ministop
+      daily-yamazaki: Daily Yamazaki
+      seven-eleven: Seven Eleven
+    email: Email
+    phone: Phone
+    given_name: Given Name
+    family_name: Family Name
+    given_name_kana: Given Name Kana
+    family_name_kana: Family Name Kana

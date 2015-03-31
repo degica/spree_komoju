@@ -4,6 +4,13 @@ module SpreeKomoju
     isolate_namespace Spree
     engine_name 'spree_komoju'
 
+    initializer "spree.gateway.payment_methods", after: "spree.register.payment_methods" do |app|
+      app.config.spree.payment_methods << Spree::Gateway::KomojuKonbini
+      app.config.spree.payment_methods << Spree::Gateway::KomojuBankTransfer
+      app.config.spree.payment_methods << Spree::Gateway::KomojuPayEasy
+      app.config.spree.payment_methods << Spree::Gateway::KomojuWebMoney
+    end
+
     # use rspec for tests
     config.generators do |g|
       g.test_framework :rspec

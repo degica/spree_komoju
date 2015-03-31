@@ -3,6 +3,7 @@ module SpreeKomoju
     class InstallGenerator < Rails::Generators::Base
 
       class_option :auto_run_migrations, :type => :boolean, :default => false
+      source_root File.expand_path('../', __FILE__)
 
       def add_javascripts
         append_file 'vendor/assets/javascripts/spree/frontend/all.js', "//= require spree/frontend/spree_komoju\n"
@@ -16,6 +17,10 @@ module SpreeKomoju
 
       def add_migrations
         run 'bundle exec rake railties:install:migrations FROM=spree_komoju'
+      end
+
+      def add_images
+        directory "images", "app/assets/images"
       end
 
       def run_migrations
