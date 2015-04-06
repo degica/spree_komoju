@@ -1,0 +1,17 @@
+<div>
+  Thank you for your order. Instructions have been sent to your e-mail address.<br>
+  To complete a payment at <%= source.convenience.camelcase %>, Receipt Number and Confirmation Number are required.<br>
+  <br>
+  <%= link_to source.instructions_url do %>
+    How to make a payment at <%= source.convenience.camelcase %>
+  <% end %>
+</div>
+<br>
+<div class='alert alert-info' role='alert'>
+  <h4>Receipt Number</h4>
+  <p><%= source.receipt %></p>
+  <h4>Confirmation Number</h4>
+  <p><%= source.confirmation_code %></p>
+  <h4>End Date</h4>
+  <p><%= source.expires_at %></p>
+</div>
