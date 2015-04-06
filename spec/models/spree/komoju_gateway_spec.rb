@@ -32,7 +32,7 @@ describe Spree::KomojuGateway, type: :model do
     it "changes cents to dollar" do
       options = { shipping: 100, tax: 100, subtotal: 100, discount: 100 }
 
-      expect(subject.change_options_to_dollar(options)).to eq ({ shipping: 1, tax: 1, subtotal: 1, discount: 1 }) 
+      expect(subject.change_options_to_dollar(options)).to eq ({ shipping: 1, tax: 1, subtotal: 1, discount: 1 })
     end
   end
 
