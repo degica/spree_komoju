@@ -7,6 +7,7 @@ module SpreeKomoju
     initializer "spree.gateway.payment_methods", after: "spree.register.payment_methods" do |app|
       app.config.spree.payment_methods << Spree::Gateway::KomojuKonbini
       app.config.spree.payment_methods << Spree::Gateway::KomojuBankTransfer
+      app.config.spree.payment_methods << Spree::Gateway::KomojuPayEasy
     end
 
     # use rspec for tests
