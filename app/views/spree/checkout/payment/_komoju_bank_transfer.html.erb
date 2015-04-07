@@ -1,0 +1,35 @@
+<div class="well clearfix">
+  <% param_prefix = "payment_source[#{payment_method.id}]" %>
+
+  <p class="field">
+    <%= label_tag "email", Spree.t(:email) %><span class="required">*</span><br />
+    <%= text_field_tag "#{param_prefix}[email]", @order.email, { id: "email", class: 'form-control required'} %>
+  </p>
+
+  <p class="field">
+    <%= label_tag "phone", Spree.t(:phone) %><span class="required">*</span><br />
+    <%= text_field_tag "#{param_prefix}[phone]", @order.billing_address.phone, { id: "phone", class: 'form-control required'} %>
+  </p>
+
+  <div class="row">
+    <div class="col-md-6 field">
+      <%= label_tag "family_name", Spree.t(:family_name) %><span class="required">*</span><br />
+      <%= text_field_tag "#{param_prefix}[family_name]", @order.billing_lastname, { id: "family_name", class: 'form-control required'} %>
+    </div>
+    <div class="col-md-6 field">
+      <%= label_tag "given_name", Spree.t(:given_name) %><span class="required">*</span><br />
+      <%= text_field_tag "#{param_prefix}[given_name]", @order.billing_firstname, { id: "given_name", class: 'form-control required'} %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 field">
+      <%= label_tag "family_name_kana", Spree.t(:family_name_kana) %><span class="required">*</span><br />
+      <%= text_field_tag "#{param_prefix}[family_name_kana]", "", { id: "family_name_kana", class: 'form-control required'} %>
+    </div>
+    <div class="col-md-6 field">
+      <%= label_tag "given_name_kana", Spree.t(:given_name_kana) %><span class="required">*</span><br />
+      <%= text_field_tag "#{param_prefix}[given_name_kana]", "", { id: "given_name_kana", class: 'form-control required'} %>
+    </div>
+  </div>
+</div>
