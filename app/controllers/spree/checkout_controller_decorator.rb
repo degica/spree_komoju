@@ -3,7 +3,7 @@ Spree::CheckoutController.class_eval do
     super.push(permitted_komoju_konbini_attributes)
     super.push(permitted_komoju_banktransfer_attributes)
     super.push(permitted_komoju_pay_easy_attributes)
-    super.flatten
+    super.flatten.uniq
   end
 
   private
