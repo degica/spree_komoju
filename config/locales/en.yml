@@ -8,3 +8,9 @@ en:
       ministop: Ministop
       daily-yamazaki: Daily Yamazaki
       seven-eleven: Seven Eleven
+    email: Email
+    phone: Phone
+    given_name: Given Name
+    family_name: Family Name
+    given_name_kana: Given Name Kana
+    family_name_kana: Family Name Kana
