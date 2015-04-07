@@ -20,6 +20,9 @@ module Spree
 
     # We need to change price from cents to dollar for Komoju gateway.
     # Because, Komoju gateway supports JPY currency only.
+    #
+    # Spree changes price from dollar to cents. Almost payment gateway supports cents only.
+    # See. https://github.com/spree/spree/blob/master/core/app/models/spree/payment/gateway_options.rb
     def change_options_to_dollar(options)
       %i(shipping tax subtotal discount).each { |key| options[key] = options[key] / 100.0 }
       options
