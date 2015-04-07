@@ -5,7 +5,8 @@ describe Spree::CheckoutController, type: :controller do
     it "returns added attributes" do
       source_attributes = [:number, :month, :year, :expiry, :verification_value, :first_name, :last_name, :cc_type,
                            :gateway_customer_profile_id, :gateway_payment_profile_id, :last_digits, :name,
-                           :encrypted_data, :convenience]
+                           :encrypted_data, :convenience, :email, :phone, :family_name, :given_name, :family_name_kana,
+                           :given_name_kana]
       expect(controller.permitted_source_attributes).to eq source_attributes
     end
   end
