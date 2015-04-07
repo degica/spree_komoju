@@ -19,16 +19,8 @@ module Spree
       payment.state != 'void'
     end
 
-    def instruction
-      Spree.t("instruction.bank_transfer", instruction_params)
-    end
-
-    def instruction_params
-      {
-        expires_at:  expires_at,
-        bank_number: bank_number,
-        order_id:    order_id
-      }
+    def instruction_partial_path
+      "spree/orders/bank_transfer"
     end
   end
 end
