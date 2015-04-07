@@ -6,38 +6,5 @@
   If you have chosen to use bank transfer payment, please use a bank transfer form which your bank offers, or please remit at ATM.<br>
 <br>
   Please make sure to include your banktransfer ID in the payer's name. Please enter your banktransfer ID shown in this email in front of your name as Payer when remitting.<br>
-<br>
-  A remittance without banktransfer ID may result in a delay in the delivery of purchased products.<br>
-<br>
-  Please note that a bank transfer fee will be borne by Payer.<br>
-<br>
-  After completing the payment, please send the following information to komoju-cs@degica.com.<br>
-<br>
-  Banktransfer ID: <%= source.order_id %><br>
-  Payer's name: <%= @order.name %><br>
-  Total: <%= @order.display_total.to_html %><br>
-  Bank name:<br>
-  Time of payment:<br>
-  <h4>Notes</h4>
-<br>
-  The Banktransfer ID is very important. Please make a note of it and bring it with you when you pay at the ATM.<br>
-  Please make sure your payment amount is accurate. Over-payments will not be refunded.<br>
-  If no payment is received within 7 days of the order, the order will be cancelled.<br>
-  We cannot accept payment by bank transfer for multiple orders at one time.<br>
-  For questions, please contact komoju-cs@degica.com.<br>
-</div>
-<br>
-<div class='alert alert-info' role='alert'>
-  <div>
-  <h4>Payee Information</h4>
-  <p>Bank: Mitsui Sumitomo Bank</p>
-  <p>Branch: Kichijoji</p>
-  <p>Account Type: Savings</p>
-  <p>Account number: <%= source.bank_number %></p>
-  <p>Payee: K.K.DEGICA (Or Degica Co., Ltd.)</p>
-  </div>
-  <div>
-  <h4>Banktransfer ID</h4>
-  <p><%= source.order_id %></p>
-  </div>
+  Please see the confirmation email for further payment instructions.
 </div>
