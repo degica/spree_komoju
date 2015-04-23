@@ -18,7 +18,7 @@ module Spree
       true
     end
 
-    # We need to change price from cents to dollar for Komoju gateway.
+    # We need to change shipping, tax, subtotal and discount from cents to dollar for Komoju gateway.
     # Because, Komoju gateway supports JPY currency only.
     #
     # Spree changes price from dollar to cents. Almost payment gateway supports cents only.
