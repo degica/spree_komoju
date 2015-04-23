@@ -5,6 +5,7 @@ module Spree
     has_many :payments, as: :source
 
     validates :email, :given_name, :family_name, :given_name_kana, :family_name_kana, presence: true
+    validates :phone, numericality: true, allow_nil: true
 
     def actions
       %w{capture void}
