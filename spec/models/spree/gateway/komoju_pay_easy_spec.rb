@@ -37,7 +37,7 @@ describe Spree::Gateway::KomojuPayEasy, type: :model do
     context "with currency is USD" do
       let(:currency) { "USD" }
 
-      it "calls ActiveMerchant::Billing::KomojuGateway#purchase" do
+      it "calls ActiveMerchant::Billing::KomojuGateway#purchase with original options" do
         expect_any_instance_of(ActiveMerchant::Billing::KomojuGateway).to receive(:purchase).with(800.0, details, options) { response }
 
         subject.authorize(money, source, options)
@@ -47,9 +47,10 @@ describe Spree::Gateway::KomojuPayEasy, type: :model do
     context "with currency is JPY" do
       let(:currency) { "JPY" }
 
-      it "calls ActiveMerchant::Billing::KomojuGateway#purchase" do
-        changed_option =  { login: "api_key", shipping: 1.0, tax: 2.0, subtotal: 8.0, discount: 1.0, currency: currency }
-        expect_any_instance_of(ActiveMerchant::Billing::KomojuGateway).to receive(:purchase).with(998.0, details, changed_option) { response }
+      it "calls ActiveMerchant::Billing::KomojuGateway#purchase with options converted from cents to dollars" do
+        options_converted_to_dollars = { login: "api_key", shipping: 1.0, tax: 2.0, subtotal: 8.0, discount: 1.0,
+                                         currency: currency }
+        expect_any_instance_of(ActiveMerchant::Billing::KomojuGateway).to receive(:purchase).with(998.0, details, options_converted_to_dollars) { response }
 
         subject.authorize(money, source, options)
       end
