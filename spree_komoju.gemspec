@@ -3,8 +3,9 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_komoju'
   s.version     = '3.0.0'
-  s.summary     = 'TODO: Add gem summary here'
-  s.description = 'TODO: Add (optional) gem description here'
+  s.summary     = 'Spree Komoju Payment Gateway'
+  s.description = 'Spree Payment gateway for Komoju payment gateway'
+  s.authors     = ['Masahiro Saito', 'Chris Salzberg']
   s.required_ruby_version = '>= 2.0.0'
 
   # s.author    = 'You'
