@@ -4,7 +4,8 @@ module Spree
       details = {
         type:  "konbini",
         store: source.convenience,
-        phone: options[:billing_address][:phone]
+        phone: options[:billing_address][:phone],
+        email: options[:email]
       }
       options = change_options_to_dollar(options) if options[:currency] == "JPY"
 
