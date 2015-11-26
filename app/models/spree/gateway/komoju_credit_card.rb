@@ -16,7 +16,7 @@ module Spree
 
     def create_profile(payment)
       if payment.source.gateway_customer_profile_id.nil? && payment.source.number.present?
-        response = provider.store(payment.source, options)
+        response = provider.store(payment.source.to_active_merchant, options)
 
         if response.success?
           payment.source.update_attributes!(:gateway_payment_profile_id => response.params['id'])
