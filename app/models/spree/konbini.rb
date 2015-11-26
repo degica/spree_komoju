@@ -24,5 +24,9 @@ module Spree
     def instruction_partial_path
       "spree/orders/konbini"
     end
+
+    def imported
+      false
+    end
   end
 end
