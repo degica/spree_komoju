@@ -18,20 +18,12 @@ module Spree
       true
     end
 
-    def create_profile(payment)
-      if payment.source.gateway_customer_profile_id.nil? && payment.source.number.present?
-        response = provider.store(payment.source, options)
-
-        if response.success?
-          payment.source.update_attributes!(:gateway_payment_profile_id => response.params['id'])
-        else
-          payment.send(:gateway_error, response.message)
-        end
-      end
-    end
-
     def supports?(source)
       true
+    end
+
+    # no-op, override where necessary
+    def create_profile(payment)
     end
 
     # We need to change shipping, tax, subtotal and discount from cents to dollar for Komoju gateway.
