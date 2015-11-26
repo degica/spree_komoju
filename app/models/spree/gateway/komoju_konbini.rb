@@ -16,7 +16,7 @@ module Spree
         receipt:           response.params["payment_details"]["receipt"],
         instructions_url:  response.params["payment_details"]["instructions_url"],
         confirmation_code: response.params["payment_details"]["confirmation_code"]
-      )
+      ) if response.success?
       response
     end
   end
