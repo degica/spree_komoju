@@ -14,8 +14,16 @@ module Spree
       false
     end
 
+    def payment_profiles_supported?
+      true
+    end
+
     def supports?(source)
       true
+    end
+
+    # no-op, override where necessary
+    def create_profile(payment)
     end
 
     # We need to change shipping, tax, subtotal and discount from cents to dollar for Komoju gateway.

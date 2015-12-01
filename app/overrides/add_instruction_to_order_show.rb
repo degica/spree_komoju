@@ -3,5 +3,6 @@ Deface::Override.new(:virtual_path => 'spree/orders/show',
                      :insert_before => "fieldset#order_summary legend",
                      :text => "
 <% unless @order.paid? %>
-  <%= render @order.payments.last.source.instruction_partial_path, source: @order.payments.last.source %>
+  <% source = @order.payments.last.source %>
+  <%= render source.instructions_partial_path, source: source if source.respond_to?(:instructions_partial_path)  %>
 <% end %>")
