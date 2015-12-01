@@ -21,7 +21,7 @@ module Spree
       payment.state != 'void'
     end
 
-    def instruction_partial_path
+    def instructions_partial_path
       "spree/orders/konbini"
     end
 
