@@ -17,7 +17,16 @@ module Spree
     # enable either token-based profiles or customer-based profiles
     def create_profile(payment)
       return unless payment.source.number.present?
-      profile_id_name = SpreeKomoju.enable_customer_profiles ? :gateway_customer_profile_id : :gateway_payment_profile_id
+
+      options = {}
+
+      if SpreeKomoju.enable_customer_profiles
+        profile_id_name = :gateway_customer_profile_id
+        options = options.merge(email: payment.order.email)
+      else
+        profile_id_name = :gateway_payment_profile_id
+      end
+
       profile_id = payment.source.public_send(profile_id_name)
       if profile_id.nil?
         response = provider.store(payment.source.to_active_merchant,

@@ -46,6 +46,7 @@ module ActiveMerchant #:nodoc:
         add_payment_details(post, payment, options)
 
         if options[:customer_profile]
+          post[:email] = options[:email]
           commit("/customers", post)
         else
           commit("/tokens", post)
