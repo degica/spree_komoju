@@ -1,0 +1,25 @@
+<fieldset data-hook="konbini">
+  <legend><%= Spree.t(:konbini) %></legend>
+  <table class="table table-condensed table-bordered">
+    <tr>
+      <th width="20%"><%= Spree.t(:konbini_chain) %>:</th>
+      <td><%= payment.source.convenience %></td>
+    </tr>
+    <tr>
+      <th width="20%"><%= Spree.t(:konbini_receipt) %>:</th>
+      <td><%= payment.source.confirmation_code %></td>
+    </tr>
+    <tr>
+      <th width="20%"><%= Spree.t(:konbini_confirmation_code) %>:</th>
+      <td><%= payment.source.receipt %></td>
+    </tr>
+    <tr>
+      <th width="20%"><%= Spree.t(:konbini_instructions_url) %>:</th>
+      <td><%= payment.source.instructions_url %></td>
+    </tr>
+    <tr>
+      <th><%= Spree.t(:expires_at) %>:</th>
+      <td><%= payment.source.expires_at %></td>
+    </tr>
+  </table>
+</fieldset>
