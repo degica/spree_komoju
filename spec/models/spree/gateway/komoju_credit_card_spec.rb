@@ -12,6 +12,7 @@ describe Spree::Gateway::KomojuCreditCard, type: :model do
     let(:money) { 1000.0 }
     let(:source) do
       double("credit card", gateway_payment_profile_id: payment_profile_id,
+                            gateway_customer_profile_id: nil,
                             to_active_merchant: details)
     end
     let(:currency) { "JPY" }
@@ -52,8 +53,8 @@ describe Spree::Gateway::KomojuCreditCard, type: :model do
     let(:payment) { double("payment", source: source) }
     let(:details) { double("payment details") }
 
-    context "source has credit card and no gateway_customer_profile_id" do
-      let(:source) { double("credit card", gateway_customer_profile_id: nil,
+    context "source has credit card and no gateway_payment_profile_id" do
+      let(:source) { double("credit card", gateway_payment_profile_id: nil,
                                            number: "4111111111111111",
                                            to_active_merchant: details) }
       before do
@@ -92,7 +93,7 @@ describe Spree::Gateway::KomojuCreditCard, type: :model do
     end
 
     context "source has no number" do
-      let(:source) { double("credit card", gateway_customer_profile_id: nil,
+      let(:source) { double("credit card", gateway_payment_profile_id: nil,
                                            number: nil,
                                            to_active_merchant: details) }
 
@@ -102,8 +103,8 @@ describe Spree::Gateway::KomojuCreditCard, type: :model do
       end
     end
 
-    context "source already has a customer profile id" do
-      let(:source) { double("credit card", gateway_customer_profile_id: "tok_123",
+    context "source already has a payment profile id" do
+      let(:source) { double("credit card", gateway_payment_profile_id: "tok_123",
                                            number: nil,
                                            to_active_merchant: details) }
 
