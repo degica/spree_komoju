@@ -1,0 +1,16 @@
+language: ruby
+script: bundle exec rspec
+before_script:
+- bundle exec rake test_app
+cache: bundler
+branches:
+  only:
+  - master
+env:
+  global:
+  - RAILS_ENV=test
+rvm:
+- 2.2.3
+notifications:
+  slack:
+    secure: P3aNJn3Wzvgt1m5aHZ/Pu0vRSgZ1q3vUnamOC+dTwapbuag2j0vHUR8kuzLaJCOHSsPWJ2wRwz31oNoYjrdqCBv1Ox9DpauVGsCvx+eYhHyaMCcSAY5tbGhgZT3U0UIwcE0oR0e68IbTAVFUAiBmYeQocLFMGVxy6HhPSLmKW9k=
