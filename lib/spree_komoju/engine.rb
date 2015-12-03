@@ -1,4 +1,6 @@
 module SpreeKomoju
+  mattr_accessor :enable_customer_profiles
+
   class Engine < Rails::Engine
     require 'spree/core'
     isolate_namespace Spree

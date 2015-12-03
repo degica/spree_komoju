@@ -45,7 +45,12 @@ module ActiveMerchant #:nodoc:
         post = {}
         add_payment_details(post, payment, options)
 
-        commit("/tokens", post)
+        if options[:customer_profile]
+          post[:email] = options[:email]
+          commit("/customers", post)
+        else
+          commit("/tokens", post)
+        end
       end
 
       private
@@ -63,10 +68,14 @@ module ActiveMerchant #:nodoc:
           details[:given_name] = payment.first_name
           details[:family_name] = payment.last_name
           details[:email] = options[:email] if options[:email]
-        else
-          details = payment
+          post[:payment_details] = details
+        when String
+          if payment.match(/^tok_/)
+            post[:payment_details] = payment
+          else
+            post[:customer] = payment
+          end
         end
-        post[:payment_details] = details
       end
 
       def add_fraud_details(post, options)
