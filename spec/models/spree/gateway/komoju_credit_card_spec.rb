@@ -59,7 +59,7 @@ describe Spree::Gateway::KomojuCreditCard, type: :model do
                                            to_active_merchant: details) }
       before do
         allow(response).to receive(:params).and_return("id" => "tok_123")
-        expect(komoju_gateway).to receive(:store).with(details, hash_including()) { response }
+        expect(komoju_gateway).to receive(:store).with(details, {}) { response }
       end
 
       context "response is success" do
@@ -73,7 +73,7 @@ describe Spree::Gateway::KomojuCreditCard, type: :model do
         end
 
         it "updates source with payment profile id" do
-          allow(komoju_gateway).to receive(:store).with(details, hash_including()) { response }
+          allow(komoju_gateway).to receive(:store).with(details, {}) { response }
           expect(source).to receive(:update_attributes!).with(gateway_payment_profile_id: "tok_123")
           subject.create_profile(payment)
         end

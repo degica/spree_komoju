@@ -23,6 +23,7 @@ module Spree
         options = { email: payment.order.email, customer_profile: true }
       else
         profile_id_name = :gateway_payment_profile_id
+        options = {}
       end
 
       profile_id = payment.source.public_send(profile_id_name)
