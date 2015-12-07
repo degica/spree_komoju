@@ -75,6 +75,8 @@ module ActiveMerchant #:nodoc:
           else
             post[:customer] = payment
           end
+        else
+          post[:payment_details] = payment
         end
       end
 
