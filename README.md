@@ -1,7 +1,7 @@
 SpreeKomoju
 ===========
 
-Introduction goes here.
+SpreeKomoju provides a comprehensive integration for all [Komoju](https://docs.komoju.com) payment methods with a single gem, including Credit Card, Konbini and Bank Transfer.
 
 Installation
 ------------
@@ -36,4 +36,4 @@ Simply add this require statement to your spec_helper:
 require 'spree_komoju/factories'
 ```
 
-Copyright (c) 2015 [name of extension creator], released under the New BSD License
+Copyright (c) 2015 Degica, released under the New BSD License
