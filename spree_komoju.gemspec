@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.version     = '0.0.5'
   s.summary     = 'Spree Komoju Payment Gateway'
   s.description = 'Spree Payment gateway for Komoju payment gateway'
-  s.authors     = ['Masahiro Saito', 'Chris Salzberg']
+  s.authors     = ['Masahiro Saito', 'Chris Salzberg', 'Richard Ramsden']
   s.required_ruby_version = '>= 2.0.0'
 
   # s.author    = 'You'
