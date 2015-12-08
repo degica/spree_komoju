@@ -1,5 +1,6 @@
 module SpreeKomoju
   mattr_accessor :enable_customer_profiles
+  mattr_accessor :komoju_webhook_secret_token
 
   class Engine < Rails::Engine
     require 'spree/core'
