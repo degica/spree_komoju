@@ -19,24 +19,40 @@ describe Spree::KomojuController, type: :controller do
       end
 
       context 'when type is payment.captured' do
-        let(:payment) { double Spree::Payment, complete!: true }
+        let(:payment) { double Spree::Payment, complete!: true, completed?: completed }
         let(:capture_params) do
           {
             "type" => "payment.captured",
             "data" => {
-              "external_order_num" => "SPREEORDER-PAYMENTID"
+              "external_order_num" => "SPREEORDER-PAYMENTID",
             }
           }
         end
 
         context 'when payment exists' do
-          it 'marks a payment as complete' do
-            allow(Spree::Payment).to receive(:find_by_number!) { payment }
+          context 'when payment has already been completed' do
+            let(:completed) { true }
 
-            post :callback, capture_params
+            it 'does nothing' do
+              allow(Spree::Payment).to receive(:find_by_number!) { payment }
 
-            expect(payment).to have_received(:complete!)
-          end 
+              post :callback, capture_params
+
+              expect(payment).to_not have_received(:complete!)
+            end 
+          end
+
+          context 'when payment has not been completed yet' do
+            let(:completed) { false }
+
+            it 'marks a payment as complete' do
+              allow(Spree::Payment).to receive(:find_by_number!) { payment }
+
+              post :callback, capture_params
+
+              expect(payment).to have_received(:complete!)
+            end 
+          end
         end
 
         context 'when payment doesnt exist' do

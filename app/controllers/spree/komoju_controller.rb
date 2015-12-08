@@ -11,7 +11,7 @@ module Spree
       when "payment.captured"
         order_number = extract_payment_number(params[:data][:external_order_num])
         payment = Spree::Payment.find_by_number!(order_number)
-        payment.complete!
+        payment.complete! unless payment.completed?
       else
         return head :unauthorized
       end
