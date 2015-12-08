@@ -19,6 +19,22 @@ bundle
 bundle exec rails g spree_komoju:install
 ```
 
+Webhooks
+--------
+
+You will need to [setup a webhook](https://docs.komoju.com/api/webhooks) to complete Konbini
+and Bank Transfer payments. This is because these payments are completed offline unlike
+Credit Card payments.
+
+Adding spree_komoju will expose a new route `http://localhost:3000/komoju/callback` which expects
+a `payment.captured` webhook. You can configure a [secret token](https://docs.komoju.com/api/webhooks#secret_token)
+for your callback endpoint using the following configuration code:
+
+```ruby
+# config/initializers/spree_komoju.rb
+SpreeKomoju.komoju_webhook_secret_token = 'MY WEBHOOK SECRET'
+```
+
 Testing
 -------
 
