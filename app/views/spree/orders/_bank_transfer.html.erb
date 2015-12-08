@@ -1,10 +1,18 @@
 <div>
-  Thank you for your order. Instructions have been sent to your e-mail address.<br>
+  <p>
+    Thank you for your order. Instructions have been sent to your e-mail address.<br/>
+    You can find a link with instructions on how to pay below:
+  </p>
+
+  <%= link_to source.instructions_url do %>
+    How to make a bank transfer payment
+  <% end %>
+</div>
 <br>
-  <h4>Banktransfer ID: <%= source.order_id %></h4>
-  The Banktransfer ID is very important! Please make a note of it and bring it with you when you go to pay at the ATM.<br>
-  If you have chosen to use bank transfer payment, please use a bank transfer form which your bank offers, or please remit at ATM.<br>
-<br>
-  Please make sure to include your banktransfer ID in the payer's name. Please enter your banktransfer ID shown in this email in front of your name as Payer when remitting.<br>
-  Please see the confirmation email for further payment instructions.
+
+<div class='alert alert-info' role='alert'>
+  <h4>Order ID</h4>
+  <p><%= source.order_id %></p>
+  <h4>End Date</h4>
+  <p><%= source.expires_at %></p>
 </div>

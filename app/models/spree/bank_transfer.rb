@@ -22,5 +22,9 @@ module Spree
     def instructions_partial_path
       "spree/orders/bank_transfer"
     end
+
+    def imported
+      false
+    end
   end
 end
