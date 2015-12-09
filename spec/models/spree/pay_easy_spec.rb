@@ -63,7 +63,7 @@ describe Spree::PayEasy, type: :model do
     end
   end
 
-  describe "#instruction_partial_path" do
-    it { expect(subject.instruction_partial_path).to eq "spree/orders/pay_easy" }
+  describe "#instructions_partial_path" do
+    it { expect(subject.instructions_partial_path).to eq "spree/orders/pay_easy" }
   end
 end

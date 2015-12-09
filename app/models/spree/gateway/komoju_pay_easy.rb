@@ -16,9 +16,12 @@ module Spree
 
       source.update!(
         expires_at:       response.params["payment_deadline"].to_time,
-        pay_url:          response.params["payment_details"]["pay_url"],
+        bank_id:          response.params["payment_details"]["bank_id"],
+        customer_id:      response.params["payment_details"]["customer_id"],
+        confirmation_id:  response.params["payment_details"]["confirmation_id"],
         instructions_url: response.params["payment_details"]["instructions_url"]
-      )
+      ) if response.success?
+
       response
     end
   end
