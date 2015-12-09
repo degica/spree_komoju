@@ -10,8 +10,10 @@ class CreateSpreePayEasies < ActiveRecord::Migration
       t.integer :user_id
       t.integer :payment_method_id
       t.string  :brand, default: "pay_easy"
-      t.string  :pay_url
       t.string  :instructions_url
+      t.string  :bank_id
+      t.string  :customer_id
+      t.string  :confirmation_id
       t.datetime :expires_at
 
       t.timestamps null: false
