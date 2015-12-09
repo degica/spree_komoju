@@ -1,5 +1,6 @@
 en:
   spree:
+    pay_easy: "Pay Easy"
     conveniences:
       lawson: Lawson
       family-mart: Family Mart
@@ -10,7 +11,14 @@ en:
       seven-eleven: Seven Eleven
     email: Email
     phone: Phone
-    given_name: Given Name
-    family_name: Family Name
-    given_name_kana: Given Name Kana
-    family_name_kana: Family Name Kana
+    given_name: First Name
+    family_name: Last Name
+    given_name_kana: First Name (Katakana)
+    family_name_kana: Last Name (Katakana)
+  activerecord:
+    attributes:
+      spree/pay_easy:
+        given_name_kana: First Name (Katakana)
+        family_name_kana: Last Name (Katakana)
+        given_name: First Name
+        family_name: Last Name
