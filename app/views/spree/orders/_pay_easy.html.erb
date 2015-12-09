@@ -1,0 +1,24 @@
+<div>
+  <p>
+    Thank you for your order. Instructions have been sent to your e-mail address.<br/>
+    Please follow the link below to complete your purchase:
+  </p>
+
+  <%= link_to source.instructions_url do %>
+    How to pay with PayEasy
+  <% end %>
+</div>
+<br>
+
+<div class='alert alert-info' role='alert'>
+  <dl>
+    <dt>Bank Number</dt>
+    <dd><%= source.bank_id %></dd>
+    <dt>Customer Number</dt>
+    <dd><%= source.customer_id %></dd>
+    <dt>Confirmation Number</dt>
+    <dd><%= source.confirmation_id %></dd>
+    <dt>Expiry Date</dt>
+    <dd><%= l source.expires_at.in_time_zone("Tokyo"), format: :short %></dd>
+  </dl>
+</div>

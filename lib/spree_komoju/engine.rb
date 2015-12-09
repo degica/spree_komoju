@@ -11,6 +11,7 @@ module SpreeKomoju
       app.config.spree.payment_methods << Spree::Gateway::KomojuCreditCard
       app.config.spree.payment_methods << Spree::Gateway::KomojuKonbini
       app.config.spree.payment_methods << Spree::Gateway::KomojuBankTransfer
+      app.config.spree.payment_methods << Spree::Gateway::KomojuPayEasy
     end
 
     # use rspec for tests

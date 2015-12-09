@@ -1,7 +1,7 @@
 SpreeKomoju
 ===========
 
-SpreeKomoju provides a comprehensive integration for all [Komoju](https://docs.komoju.com) payment methods with a single gem, including Credit Card, Konbini and Bank Transfer.
+SpreeKomoju provides a comprehensive integration for all [Komoju](https://docs.komoju.com) payment methods with a single gem, including Credit Card, Konbini, PayEasy, and Bank Transfer.
 
 Installation
 ------------
@@ -22,9 +22,8 @@ bundle exec rails g spree_komoju:install
 Webhooks
 --------
 
-You will need to [setup a webhook](https://docs.komoju.com/api/webhooks) to complete Konbini
-and Bank Transfer payments. This is because these payments are completed offline unlike
-Credit Card payments.
+You will need to [setup a webhook](https://docs.komoju.com/api/webhooks) to complete non credit card
+payments options. This is because payment options like Konbini, Bank Transfer, etc. are completed offline.
 
 Adding spree_komoju will expose a new route `http://localhost:3000/komoju/callback` which expects
 a `payment.captured` webhook. You can configure a [secret token](https://docs.komoju.com/api/webhooks#secret_token)
