@@ -1,0 +1,24 @@
+ja:
+  spree:
+    pay_easy: Pay Easy
+    conveniences:
+      lawson: ローソン
+      family-mart: ファミリーマート
+      sunkus: サンクス
+      circle-k: サークルK
+      ministop: ミニストップ
+      daily-yamazaki: デイリーヤマザキ
+      seven-eleven: セブンイレブン
+    email: メール
+    phone: 電話番号
+    given_name: 名
+    family_name: 姓
+    given_name_kana: 名 (カタカナ)
+    family_name_kana: 姓 (カタカナ)
+  activerecord:
+    attributes:
+      spree/pay_easy:
+        given_name_kana: 名 (カタカナ)
+        family_name_kana: 姓 (カタカナ)
+        given_name: 名
+        family_name: 姓
