@@ -2,3 +2,26 @@
 Placeholder manifest file.
 the installer will append this file to the app vendored assets here: 'vendor/assets/stylesheets/spree/frontend/all.css'
 */
+
+#checkout .multicard {
+  margin-top: 20px;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+#checkout .multicard th {
+  width: 200px;
+  font-weight: normal;
+}
+
+.webmoney_form .form-inline .form-control,
+.webmoney_form .form-inline .form-group {
+  display: inline;
+  width: auto;
+}
+
+@media screen and (min-width: 460px){
+  #checkout .multicard td:after {
+    content: " points";
+  }
+}
