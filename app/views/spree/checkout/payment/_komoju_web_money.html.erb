@@ -39,8 +39,8 @@
           </tr>
         <% end %>
         <tr>
-          <th>Balance Remaining</th>
-          <td><%= @webmoney.short_amount %></td>
+          <th><%= t('spree.komoju.web_money.balance_remaining') %></th>
+          <td><%= @webmoney.short_amount %> <span class="points"><%= t('spree.komoju.web_money.points') %></td>
         </tr>
       </table>
     </div>

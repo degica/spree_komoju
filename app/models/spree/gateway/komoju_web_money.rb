@@ -37,7 +37,7 @@ module Spree
 
     def multi_card_response(response)
       response.instance_variable_set(:@success, false)
-      response.instance_variable_set(:@message, I18n.t('spree.komoju.gateway_errors.webmoney_insufficient_funds'))
+      response.instance_variable_set(:@message, I18n.t('spree.komoju.web_money.insufficient_funds'))
       response
     end
 

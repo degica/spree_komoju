@@ -18,8 +18,10 @@ en:
     family_name_kana: Last Name (Katakana)
     prepaid_number: Prepaid Number
     komoju:
-      gateway_errors:
-        webmoney_insufficient_funds: Insufficient funds, please enter another card
+      web_money:
+        balance_remaining: "Balance Remaining"
+        points: "points"
+        insufficient_funds: Insufficient funds, please enter another card
   activerecord:
     attributes:
       spree/pay_easy:

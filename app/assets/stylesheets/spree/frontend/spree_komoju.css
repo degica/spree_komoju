@@ -20,8 +20,8 @@ the installer will append this file to the app vendored assets here: 'vendor/ass
   width: auto;
 }
 
-@media screen and (min-width: 460px){
-  .webmoney .multicard td:after {
-    content: " points";
+@media screen and (max-width: 460px){
+  .webmoney .multicard span.points {
+    display: none;
   }
 }
