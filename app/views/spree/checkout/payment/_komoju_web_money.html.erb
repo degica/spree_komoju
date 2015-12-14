@@ -1,4 +1,4 @@
-<% @webmoney = WebMoneyDecorator.new(@order.payments.last.try(:source)) %>
+<% @webmoney = Spree::WebMoneyDecorator.new(@order.payments.last.try(:source)) %>
 
 <div class="well webmoney clearfix">
   <p><%= image_tag 'webmoney.png' %></p>
