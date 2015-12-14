@@ -1,5 +1,3 @@
-//= require spree/frontend
-
 SpreeKomoju = {
   addWebMoneyListener: function() {
     $("#checkout_form_payment input.webmoney_pin").keyup(function() {
