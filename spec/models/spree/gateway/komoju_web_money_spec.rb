@@ -60,7 +60,7 @@ describe Spree::Gateway::KomojuWebMoney do
             response = subject.purchase(money, source, options)
 
             expect(response).to_not be_success
-            expect(response.message).to eq(I18n.t('spree.komoju.gateway_errors.webmoney_insufficient_funds'))
+            expect(response.message).to eq(I18n.t('spree.komoju.web_money.insufficient_funds'))
           end  
         end
       end
