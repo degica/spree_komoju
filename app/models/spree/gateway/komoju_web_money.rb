@@ -43,6 +43,10 @@ module Spree
 
     def continue_uuid(current_order_id)
       order = Spree::Order.find_by_number(current_order_id.split('-').first)
+      
+      # NOTE: Since the current payment is this payment, find the payment before
+      # and see if it was for a webmoney transaction. If it was check if it has a payment UUID
+      # to continue the transaction.
       source = WebMoneyDecorator.new(order.payments.last(2).first.try(:source))
       source.payment_uuid
     end
