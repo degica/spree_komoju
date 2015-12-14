@@ -1,6 +1,7 @@
 en:
   spree:
     pay_easy: "Pay Easy"
+    web_money: WebMoney
     conveniences:
       lawson: Lawson
       family-mart: Family Mart
@@ -15,6 +16,12 @@ en:
     family_name: Last Name
     given_name_kana: First Name (Katakana)
     family_name_kana: Last Name (Katakana)
+    prepaid_number: Prepaid Number
+    komoju:
+      web_money:
+        balance_remaining: "Balance Remaining"
+        points: "points"
+        insufficient_funds: Insufficient funds, please enter another card
   activerecord:
     attributes:
       spree/pay_easy:
@@ -22,3 +29,5 @@ en:
         family_name_kana: Last Name (Katakana)
         given_name: First Name
         family_name: Last Name
+      spree/web_money:
+        prepaid_number: Prepaid Number

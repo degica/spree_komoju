@@ -1,0 +1,48 @@
+<% @webmoney = Spree::WebMoneyDecorator.new(@order.payments.last.try(:source)) %>
+
+<div class="well webmoney clearfix">
+  <p><%= image_tag 'webmoney.png' %></p>
+  <% param_prefix = "payment_source[#{payment_method.id}]" %>
+
+  <p class="field">
+    <%= label_tag "email", Spree.t(:email) %><span class="required">*</span><br />
+    <%= text_field_tag "#{param_prefix}[email]", @order.email, { id: "email", class: 'form-control required'} %>
+  </p>
+
+  <%= hidden_field_tag "#{param_prefix}[prepaid_number]", "" %>
+
+  <div class="form-inline">
+    <%= label_tag "prepaid_number", Spree.t(:prepaid_number) %><span class="required">*</span><br />
+    <div class="form-group">
+      <%= text_field_tag nil, "", { id: "ppn1", class: 'form-control required webmoney_pin', size: 4, maxlength: 4 } %>
+    </div>
+    <div class="form-group">
+      <%= text_field_tag nil, "", { id: "ppn2", class: 'form-control required webmoney_pin', size: 4, maxlength: 4 } %>
+    </div>
+    <div class="form-group">
+      <%= text_field_tag nil, "", { id: "ppn3", class: 'form-control required webmoney_pin', size: 4, maxlength: 4 } %>
+    </div>
+    <div class="form-group">
+      <%= text_field_tag nil, "", { id: "ppn4", class: 'form-control required webmoney_pin', size: 4, maxlength: 4 } %>
+    </div>
+  </div>
+
+  <% if @webmoney.prepaid_cards.present? %>
+    <%= hidden_field_tag "#{param_prefix}[payment_uuid]", @webmoney.payment_uuid %>
+
+    <div class="well multicard">
+      <table>
+        <% @webmoney.prepaid_cards.each do |card| %>
+          <tr>
+            <th>**** **** **** <%= card["last_four_digits"] %></th>
+            <td><%= card["points"] %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <th><%= t('spree.komoju.web_money.balance_remaining') %></th>
+          <td><%= @webmoney.short_amount %> <span class="points"><%= t('spree.komoju.web_money.points') %></td>
+        </tr>
+      </table>
+    </div>
+  <% end %>
+</div>

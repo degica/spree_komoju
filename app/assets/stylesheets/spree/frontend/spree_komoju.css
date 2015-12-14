@@ -2,3 +2,26 @@
 Placeholder manifest file.
 the installer will append this file to the app vendored assets here: 'vendor/assets/stylesheets/spree/frontend/all.css'
 */
+
+.webmoney .multicard {
+  margin-top: 20px;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+.webmoney .multicard th {
+  width: 200px;
+  font-weight: normal;
+}
+
+.webmoney .form-inline .form-control,
+.webmoney .form-inline .form-group {
+  display: inline;
+  width: auto;
+}
+
+@media screen and (max-width: 460px){
+  .webmoney .multicard span.points {
+    display: none;
+  }
+}
