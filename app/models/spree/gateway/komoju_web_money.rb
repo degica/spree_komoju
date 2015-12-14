@@ -47,8 +47,7 @@ module Spree
       # NOTE: Since the current payment is this payment, find the payment before
       # and see if it was for a webmoney transaction. If it was check if it has a payment UUID
       # to continue the transaction.
-      source = WebMoneyDecorator.new(order.payments.last(2).first.try(:source))
-      source.payment_uuid
+      order.payments.last(2).first.try(:source).try(:payment_uuid)
     end
   end
 end

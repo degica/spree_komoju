@@ -31,8 +31,6 @@ describe Spree::Gateway::KomojuWebMoney do
 
     context 'with valid parameters' do
       context 'when its a new webmoney request' do
-        let(:web_money) { double WebMoneyDecorator, payment_uuid: nil }
-
         it "updates the source payment" do
           stub_order(order)
           expect_any_instance_of(ActiveMerchant::Billing::KomojuGateway).to receive(:purchase) { response }
@@ -66,11 +64,12 @@ describe Spree::Gateway::KomojuWebMoney do
       end
 
       context 'when webmoney request is continued' do
-        let(:web_money) { double WebMoneyDecorator, payment_uuid: "123" }
+        let(:webmoney) { double Spree::WebMoney, payment_uuid: "123" }
+        let(:payment) { double Spree::Payment, source: webmoney }
+        let(:order) { double Spree::Order, payments: [payment, payment] }
 
         it 'makes an activemerchant continue request' do
           stub_order(order)
-
           expect_any_instance_of(ActiveMerchant::Billing::KomojuGateway).to receive(:continue).
             with("123", {type: "web_money", email: "foo@bar.com", prepaid_number: "1111111111111111"}).
             and_return(response)
@@ -104,7 +103,6 @@ describe Spree::Gateway::KomojuWebMoney do
 
   def stub_order(order)
     allow_any_instance_of(Spree::Gateway::KomojuWebMoney).to receive(:options) { options }
-    allow(WebMoneyDecorator).to receive(:new) { web_money }
     allow(Spree::Order).to receive(:find_by_number) { order }
   end
 end
