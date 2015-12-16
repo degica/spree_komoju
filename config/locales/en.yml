@@ -30,6 +30,9 @@ en:
         prepaid_number: Prepaid Number
         order_id: Order ID
         expires_at: Expiry Date
+        bank_id: Bank ID
+        customer_id: Customer ID
+        confirmation_id: Confirmation ID
       web_money:
         balance_remaining: "Balance Remaining"
         points: "points"

@@ -1,0 +1,21 @@
+<fieldset data-hook="pay-easy">
+  <legend><%= Spree.t(:pay_easy) %></legend>
+  <table class="table table-condensed table-bordered">
+    <tr>
+      <th width="20%"><%= Spree::PayEasy.human_attribute_name(:bank_id) %>:</th>
+      <td><%= payment.source.bank_id %></td>
+    </tr>
+    <tr>
+      <th width="20%"><%= Spree::PayEasy.human_attribute_name(:customer_id) %>:</th>
+      <td><%= payment.source.customer_id %></td>
+    </tr>
+    <tr>
+      <th width="20%"><%= Spree::PayEasy.human_attribute_name(:confirmation_id) %>:</th>
+      <td><%= payment.source.confirmation_id %></td>
+    </tr>
+    <tr>
+      <th><%= Spree.t(:expires_at) %>:</th>
+      <td><%= payment.source.expires_at %></td>
+    </tr>
+  </table>
+</fieldset>
