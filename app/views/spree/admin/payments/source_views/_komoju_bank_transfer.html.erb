@@ -1,0 +1,13 @@
+<fieldset data-hook="bank-transfer">
+  <legend><%= Spree.t(:bank_tansfer) %></legend>
+  <table class="table table-condensed table-bordered">
+    <tr>
+      <th width="20%"><%= Spree::BankTransfer.human_attribute_name(:order_id) %>:</th>
+      <td><%= payment.source.order_id %></td>
+    </tr>
+    <tr>
+      <th><%= Spree::BankTransfer.human_attribute_name(:expires_at) %>:</th>
+      <td><%= payment.source.expires_at %></td>
+    </tr>
+  </table>
+</fieldset>
