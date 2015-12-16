@@ -59,8 +59,7 @@ javascript_tag <<-JS
         }
       });
 
-      $(".webmoney").has("input.webmoney_pin").submit(function() {
-        alert("submitting");
+      $(".webmoney").parents('form').has("input.webmoney_pin").submit(function() {
         var prepaid_number = $("#ppn1").val() + $("#ppn2").val() + $("#ppn3").val() + $("#ppn4").val();
         $(this).find("input[name*=prepaid_number]").val(prepaid_number)
         $(this).find("input.webmoney_pin").prop('disabled', true)
