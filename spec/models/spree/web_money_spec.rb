@@ -21,25 +21,27 @@ describe Spree::WebMoney, type: :model do
     end
 
     context "when payment state is pending" do
-      let(:payment) { double(Spree::Payment, state: state, source: source) }
-      let(:state) { "pending" }
-      let(:source) { double(Spree::WebMoney, expires_at: expires_at) }
-
-      before do
-        allow(subject).to receive(:payment) { payment }
+      context 'when payment is pending' do
+        it 'returns true' do
+          payment = double Spree::Payment, pending?: true, checkout?: false  
+          expect(subject.can_capture?(payment)).to be_truthy
+        end  
       end
 
-      context "when expires_at is tomorrow" do
-        let(:expires_at) { Date.tomorrow }
-
-        it { expect(subject.can_capture?(payment)).to be_truthy }
+      context 'when payment is in checkout state' do
+        it 'returns true' do
+          payment = double Spree::Payment, pending?: false, checkout?: true
+          expect(subject.can_capture?(payment)).to be_truthy
+        end  
       end
 
-      context "when expires_at is yesterday" do
-        let(:expires_at) { Date.yesterday}
-
-        it { expect(subject.can_capture?(payment)).to be_falsy }
+      context 'when payment is not in pending or checkout state' do
+        it 'returns false' do
+          payment = double Spree::Payment, pending?: false, checkout?: false
+          expect(subject.can_capture?(payment)).to be_falsy
+        end
       end
+
     end
   end
 
