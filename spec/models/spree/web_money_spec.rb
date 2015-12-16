@@ -10,16 +10,6 @@ describe Spree::WebMoney, type: :model do
   describe "#can_capture?" do
     let(:payment) { double(Spree::Payment, state: state) }
 
-    before do
-      allow(subject).to receive(:payment) { payment }
-    end
-
-    context "when payment state is not checkout or pending" do
-      let(:state) { "void" }
-
-      it { expect(subject.can_capture?(payment)).to be_falsy }
-    end
-
     context "when payment state is pending" do
       context 'when payment is pending' do
         it 'returns true' do
