@@ -4,7 +4,7 @@ describe Spree::WebMoney, type: :model do
   subject { described_class.new } 
 
   describe "#actions" do
-    it { expect(subject.actions).to eq ["capture", "void"] }
+    it { expect(subject.actions).to eq ["capture"] }
   end
 
   describe "#can_capture?" do
@@ -44,22 +44,8 @@ describe Spree::WebMoney, type: :model do
   end
 
   describe "#can_void?" do
-    let(:payment) { double(Spree::Payment, state: state) }
-
-    before do
-      allow(subject).to receive(:payment) { payment }
-    end
-
-    context "when payment state is void" do
-      let(:state) { "void" }
-
-      it { expect(subject.can_void?(payment)).to be_falsy }
-    end
-
-    context "when payment state is pending" do
-      let(:state) { "pending" }
-
-      it { expect(subject.can_void?(payment)).to be_truthy }
+    it 'returns false' do
+      expect(subject.can_void?(nil)).to be(false)
     end
   end
 

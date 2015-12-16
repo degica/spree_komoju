@@ -11,7 +11,7 @@ module Spree
     validates :prepaid_number, presence: true, on: :create
 
     def actions
-      %w{capture void}
+      %w{capture}
     end
 
     def can_capture?(payment)
@@ -20,7 +20,7 @@ module Spree
     end
 
     def can_void?(payment)
-      payment.state != 'void'
+      false
     end
 
     def instructions_partial_path
