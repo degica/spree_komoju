@@ -19,5 +19,9 @@ module Spree
       ) if response.success?
       response
     end
+
+    def reusable_sources(*args)
+      []
+    end
   end
 end
