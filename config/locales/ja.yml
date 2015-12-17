@@ -14,6 +14,19 @@ ja:
     given_name: 名
     family_name: 姓
     given_name_kana: 名 (カタカナ)
+    konbini_receipt_number:
+      circle_k: "オンライン決済番号"
+      daily_yamazaki: "オンライン決済番号"
+      family_mart: "お支払い受付番号"
+      lawson: "受付番号"
+      ministop: "受付番号"
+      seven_eleven: "オンライン受付番号"
+      sunkus: "オンライン決済番号"
+    konbini_confirmation_number: 確認番号
+    konbini_end_date: お支払い期限
+    konbini_thanks: "ご注文ありがとうございました。お支払い内容については、メールでもお送りしていますのでご確認ください。"
+    konbini_instructions: "コンビニ決済には『確認番号』と『%{receipt_number}』が必要です。"
+    konbini_how_to_pay: "%{convenience}の支払方法"
     family_name_kana: 姓 (カタカナ)
   activerecord:
     attributes:
