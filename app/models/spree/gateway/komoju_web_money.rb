@@ -33,6 +33,10 @@ module Spree
       response
     end
 
+    def reusable_sources(*args)
+      []
+    end
+
     private
 
     def multi_card_response(response)
