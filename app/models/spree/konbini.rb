@@ -9,16 +9,7 @@ module Spree
     validates :convenience, presence: true
 
     def actions
-      %w{capture void}
-    end
-
-    def can_capture?(payment)
-      return false unless ['checkout', 'pending'].include?(payment.state)
-      payment.source.expires_at && (payment.source.expires_at > DateTime.current)
-    end
-
-    def can_void?(payment)
-      payment.state != 'void'
+      %w{}
     end
 
     def instructions_partial_path

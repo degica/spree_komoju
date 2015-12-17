@@ -1,0 +1,13 @@
+<fieldset data-hook="web-money">
+  <legend><%= Spree.t(:web_money) %></legend>
+  <table class="table table-condensed table-bordered">
+    <tr>
+      <th width="20%"><%= Spree::WebMoney.human_attribute_name(:prepaid_number) %>:</th>
+      <td>
+        <% payment.source.prepaid_cards.each do |card| %>
+          **** **** **** <%= card["last_four_digits"] %> / <%= card["points"] %> points<br/>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+</fieldset>

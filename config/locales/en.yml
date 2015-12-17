@@ -1,6 +1,7 @@
 en:
   spree:
-    pay_easy: "Pay Easy"
+    pay_easy: Pay Easy
+    bank_transfer: Bank Transfer
     web_money: WebMoney
     conveniences:
       lawson: Lawson
@@ -18,16 +19,26 @@ en:
     family_name_kana: Last Name (Katakana)
     prepaid_number: Prepaid Number
     komoju:
+      attributes: &komoju-payment-details
+        email: Email
+        phone: Phone Number
+        given_name_kana: First Name (Katakana)
+        family_name_kana: Last Name (Katakana)
+        given_name: First Name
+        family_name: Last Name
+        instructions_url: Instructions URL
+        prepaid_number: Prepaid Number
+        order_id: Order ID
+        expires_at: Expiry Date
+        bank_id: Bank ID
+        customer_id: Customer ID
+        confirmation_id: Confirmation ID
       web_money:
         balance_remaining: "Balance Remaining"
         points: "points"
         insufficient_funds: Insufficient funds, please enter another card
   activerecord:
     attributes:
-      spree/pay_easy:
-        given_name_kana: First Name (Katakana)
-        family_name_kana: Last Name (Katakana)
-        given_name: First Name
-        family_name: Last Name
-      spree/web_money:
-        prepaid_number: Prepaid Number
+      spree/pay_easy: *komoju-payment-details
+      spree/web_money: *komoju-payment-details
+      spree/bank_transfer: *komoju-payment-details
