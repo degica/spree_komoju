@@ -19,13 +19,13 @@ en:
     family_name_kana: Last Name (Katakana)
     prepaid_number: Prepaid Number
     konbini_receipt_number:
-      circle_k: Online Payment Number
-      daily_yamazaki: Online Payment Number
+      circle_k: Receipt Number
+      daily_yamazaki: Receipt Number
       family_mart: Receipt Number
       lawson: Receipt Number
       ministop: Receipt Number
-      seven_eleven: Online Receipt Number
-      sunkus: Online Payment Number
+      seven_eleven: Receipt Number
+      sunkus: Receipt Number
     konbini_confirmation_number: Confirmation Number
     konbini_end_date: End Date
     konbini_thanks: Thank you for your order. Instructions have been sent to your e-mail address.
