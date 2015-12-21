@@ -54,11 +54,6 @@ describe Spree::Gateway::KomojuCreditCard, type: :model do
     let(:response_code) { "external_payment_id" }
     let(:source) { double("credit card") }
 
-    before do
-      api_key = double("api_key")
-      allow(subject).to receive(:preferred_api_key) { api_key }
-    end
-
     it "receives cents amount" do
       allow(komoju_gateway).to receive(:refund).with(cent_amount, response_code, {})
       subject.credit(cent_amount, source, response_code, {})
