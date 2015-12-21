@@ -9,6 +9,14 @@ module Spree
       provider.refund(money, response_code, {})
     end
 
+    def cancel(response_code)
+      provider.void(response_code)
+    end
+
+    def void(response_code, source, gateway_options)
+      provider.void(response_code)
+    end
+
     def purchase(money, source, options)
       options = change_options_to_dollar(options) if options[:currency] == "JPY"
       if profile_id = source.gateway_payment_profile_id || source.gateway_customer_profile_id

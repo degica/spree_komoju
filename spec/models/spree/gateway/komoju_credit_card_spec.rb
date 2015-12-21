@@ -67,6 +67,25 @@ describe Spree::Gateway::KomojuCreditCard, type: :model do
     end
   end
 
+  describe "#void" do
+    let(:response_code) { "external_payment_id" }
+    let(:source) { double("credit card") }
+
+    it "voids payment" do
+      expect(komoju_gateway).to receive(:void).with(response_code)
+      subject.void(response_code, source, {})
+    end
+  end
+
+  describe "#cancel" do
+    let(:response_code) { "external_payment_id" }
+
+    it "voids payment" do
+      expect(komoju_gateway).to receive(:void).with(response_code)
+      subject.void(response_code, double("source"), {})
+    end
+  end
+
   describe "#create_profile" do
     let(:payment) { double("payment", source: source) }
     let(:details) { double("payment details") }
