@@ -4,6 +4,11 @@ module Spree
       true
     end
 
+    def credit(money, source, response_code, gateway_options)
+      money = cents_to_dollar(money) if gateway_options[:currency] == "JPY"
+      provider.refund(money, response_code, {})
+    end
+
     def purchase(money, source, options)
       options = change_options_to_dollar(options) if options[:currency] == "JPY"
       if profile_id = source.gateway_payment_profile_id || source.gateway_customer_profile_id
@@ -40,6 +45,12 @@ module Spree
 
     def payment_profiles_supported?
       true
+    end
+
+    private
+
+    def cents_to_dollar(amount)
+      amount / 100.0
     end
   end
 end
