@@ -55,7 +55,7 @@ describe Spree::Gateway::KomojuCreditCard, type: :model do
     let(:source) { double("credit card") }
 
     it "receives cents amount" do
-      allow(komoju_gateway).to receive(:refund).with(cent_amount, response_code, {})
+      expect(komoju_gateway).to receive(:refund).with(cent_amount, response_code, {})
       subject.credit(cent_amount, source, response_code, {})
     end
 
