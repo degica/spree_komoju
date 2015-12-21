@@ -44,7 +44,6 @@ module ActiveMerchant #:nodoc:
 
       def refund(amount, identification, options = {})
         params = { :amount => amount }
-        params[:description] = options[:refund_message] if options[:refund_message].present?
         commit("/payments/#{identification}/refund", params)
       end
 
