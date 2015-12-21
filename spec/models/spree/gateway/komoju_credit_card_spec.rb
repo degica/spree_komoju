@@ -49,6 +49,29 @@ describe Spree::Gateway::KomojuCreditCard, type: :model do
     end
   end
 
+  describe "#credit" do
+    let(:cent_amount) { 10000 }
+    let(:response_code) { "external_payment_id" }
+    let(:source) { double("credit card") }
+
+    before do
+      api_key = double("api_key")
+      allow(subject).to receive(:preferred_api_key) { api_key }
+    end
+
+    it "receives cents amount" do
+      allow(komoju_gateway).to receive(:refund).with(cent_amount, response_code, {})
+      subject.credit(cent_amount, source, response_code, {})
+    end
+
+    context "when currency is JPY" do
+      it "receives dollar amount" do
+        expect(komoju_gateway).to receive(:refund).with(100.0, response_code, {})
+        subject.credit(cent_amount, source, response_code, {currency: "JPY"})
+      end
+    end
+  end
+
   describe "#create_profile" do
     let(:payment) { double("payment", source: source) }
     let(:details) { double("payment details") }
