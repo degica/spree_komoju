@@ -25,7 +25,9 @@ ja:
       sunkus: オンライン決済番号
     konbini_confirmation_number: 確認番号
     konbini_end_date: お支払い期限
-    konbini_thanks: "ご注文ありがとうございました。お支払い内容については、メールでもお送りしていますのでご確認ください。"
+    komoju_order_thanks: &komoju-order-thanks
+      "ご注文ありがとうございました。お支払い内容については、メールでもお送りしていますのでご確認ください。"
+    konbini_order_thanks: *komoju-order-thanks
     konbini_instructions:
       one_code: &komoju-konbini-instructions-one-code
         "コンビニ決済には『%{receipt_number}』が必要です。"
@@ -39,6 +41,12 @@ ja:
       daily-yamazaki: *komoju-konbini-instructions-one-code
       seven-eleven: *komoju-konbini-instructions-one-code
     konbini_how_to_pay: "%{convenience}の支払方法"
+    bank_transfer_order_thanks: *komoju-order-thanks
+    bank_transfer_instructions: "銀行振込の支払方法については以下のリンクをご参考ください"
+    bank_transfer_how_to_pay: "銀行振込の支払方法"
+    payeasy_order_thanks: *komoju-order-thanks
+    payeasy_instructions: "PayEasy支払いについては以下のリンクをご参考ください"
+    payeasy_how_to_pay: "PayEasyの支払方法"
     komoju:
       attributes: &komoju-payment-details
         email: メール
@@ -50,10 +58,10 @@ ja:
         instructions_url: "支払方法ページへの URL"
         prepaid_number: プリペイド番号
         order_id: 振込番号
-        expires: 有効期限
-        bank_id: "PayEasy支払い時に必要となるお客様番号"
-        customer_id: "PayEasy支払い時に必要となるお客様番号"
-        confirmation_id: "PayEasy支払い時に必要となるお客様番号"
+        expires_at: 有効期限
+        bank_id: 収納機関番号
+        customer_id: お客様番号
+        confirmation_id: 確認番号
       web_money:
         balance_remaining: 不足額
         points: ポイント

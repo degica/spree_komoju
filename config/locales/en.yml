@@ -28,7 +28,10 @@ en:
       sunkus: Receipt Number
     konbini_confirmation_number: Confirmation Number
     konbini_end_date: End Date
-    konbini_thanks: Thank you for your order. Instructions have been sent to your e-mail address.
+    komoju_order_thanks: &komoju-order-thanks
+      Thank you for your order. Instructions have been sent to your e-mail address.
+    konbini_order_thanks: *komoju-order-thanks
+    bank_transfer_order_thanks: *komoju-order-thanks
     konbini_instructions:
       one_code: &komoju-konbini-instructions-one-code
         To complete your payment, your %{receipt_number} is required.
@@ -42,6 +45,8 @@ en:
       daily-yamazaki: *komoju-konbini-instructions-one-code
       seven-eleven: *komoju-konbini-instructions-one-code
     konbini_how_to_pay: How to make a payment at %{convenience}
+    bank_transfer_instructions: "You can find a link with instructions on how to pay below:"
+    bank_transfer_how_to_pay: How to make a bank transfer payment
     komoju:
       attributes: &komoju-payment-details
         email: Email

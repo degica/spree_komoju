@@ -1,18 +1,16 @@
 <div>
   <p>
-    Thank you for your order. Instructions have been sent to your e-mail address.<br/>
-    You can find a link with instructions on how to pay below:
+    <%= Spree.t(:bank_transfer_order_thanks) %><br/>
+    <%= Spree.t(:bank_transfer_instructions) %>
   </p>
 
   <%= link_to source.instructions_url do %>
-    How to make a bank transfer payment
+    <%= Spree.t(:bank_transfer_how_to_pay) %>
   <% end %>
 </div>
 <br>
 
-<div class='alert alert-info' role='alert'>
-  <h4>Order ID</h4>
-  <p><%= source.order_id %></p>
-  <h4>End Date</h4>
-  <p><%= source.expires_at %></p>
-</div>
+<table class="table table-condensed table-bordered">
+  <tr class="info"><td><%= Spree::BankTransfer.human_attribute_name(:order_id) %></td><td><%= source.order_id %></td></tr>
+  <tr class="info"><td><%= Spree::BankTransfer.human_attribute_name(:expires_at) %></td><td><%= source.expires_at %></td></tr>
+</table>
