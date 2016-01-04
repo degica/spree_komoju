@@ -16,17 +16,28 @@ ja:
     given_name_kana: 名 (カタカナ)
     family_name_kana: 姓 (カタカナ)
     konbini_receipt_number:
-      circle_k: オンライン決済番号
-      daily_yamazaki: オンライン決済番号
-      family_mart: お客様番号
+      circle-k: オンライン決済番号
+      daily-yamazaki: オンライン決済番号
+      family-mart: お客様番号
       lawson: お客様番号
       ministop: お客様番号
-      seven_eleven: 払込票番号
+      seven-eleven: 払込票番号
       sunkus: オンライン決済番号
     konbini_confirmation_number: 確認番号
     konbini_end_date: お支払い期限
     konbini_thanks: "ご注文ありがとうございました。お支払い内容については、メールでもお送りしていますのでご確認ください。"
-    konbini_instructions: "コンビニ決済には『確認番号』と『%{receipt_number}』が必要です。"
+    konbini_instructions:
+      one_code: &komoju-konbini-instructions-one-code
+        "コンビニ決済には『%{receipt_number}』が必要です。"
+      two_codes: &komoju-konbini-instructions-two-codes
+        "コンビニ決済には『確認番号』と『%{receipt_number}』が必要です。"
+      lawson: *komoju-konbini-instructions-two-codes
+      family-mart: *komoju-konbini-instructions-two-codes
+      mini-stop: *komoju-konbini-instructions-two-codes
+      sunkus: *komoju-konbini-instructions-one-code
+      circle-k: *komoju-konbini-instructions-one-code
+      daily-yamazaki: *komoju-konbini-instructions-one-code
+      seven-eleven: *komoju-konbini-instructions-one-code
     konbini_how_to_pay: "%{convenience}の支払方法"
     komoju:
       attributes: &komoju-payment-details

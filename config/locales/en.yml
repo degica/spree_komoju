@@ -19,17 +19,28 @@ en:
     family_name_kana: Last Name (Katakana)
     prepaid_number: Prepaid Number
     konbini_receipt_number:
-      circle_k: Receipt Number
-      daily_yamazaki: Receipt Number
-      family_mart: Receipt Number
+      circle-k: Receipt Number
+      daily-yamazaki: Receipt Number
+      family-mart: Receipt Number
       lawson: Receipt Number
       ministop: Receipt Number
-      seven_eleven: Receipt Number
+      seven-eleven: Receipt Number
       sunkus: Receipt Number
     konbini_confirmation_number: Confirmation Number
     konbini_end_date: End Date
     konbini_thanks: Thank you for your order. Instructions have been sent to your e-mail address.
-    konbini_instructions: To complete your payment at %{convenience}, your %{receipt_number} and confirmation number are required.
+    konbini_instructions:
+      one_code: &komoju-konbini-instructions-one-code
+        To complete your payment, your %{receipt_number} is required.
+      two_codes: &komoju-konbini-instructions-two-codes
+        To complete your payment, your %{receipt_number} and confirmation number are required.
+      lawson: *komoju-konbini-instructions-two-codes
+      family-mart: *komoju-konbini-instructions-two-codes
+      mini-stop: *komoju-konbini-instructions-two-codes
+      sunkus: *komoju-konbini-instructions-one-code
+      circle-k: *komoju-konbini-instructions-one-code
+      daily-yamazaki: *komoju-konbini-instructions-one-code
+      seven-eleven: *komoju-konbini-instructions-one-code
     konbini_how_to_pay: How to make a payment at %{convenience}
     komoju:
       attributes: &komoju-payment-details
