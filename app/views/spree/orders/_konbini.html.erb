@@ -11,6 +11,8 @@
 <br>
 <table class="table table-condensed table-bordered">
 <tr class="info"><td><%= receipt_number %></td><td><strong><%= source.receipt %></strong></td></tr>
-<tr class="info"J><td><%= Spree.t(:konbini_confirmation_number) %></td><td><strong><%= source.confirmation_code %></strong></td></tr>
+<% if source.two_codes? %>
+  <tr class="info"J><td><%= Spree.t(:konbini_confirmation_number) %></td><td><strong><%= source.confirmation_code %></strong></td></tr>
+<% end %>
 <tr class="info"><td><%= Spree.t(:konbini_end_date) %></td><td><strong><%= source.expires_at %></strong></td></tr>
 </table>
