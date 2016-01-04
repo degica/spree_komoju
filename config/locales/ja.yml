@@ -28,7 +28,6 @@ ja:
     komoju_order_thanks: &komoju-order-thanks
       "ご注文ありがとうございました。お支払い内容については、メールでもお送りしていますのでご確認ください。"
     konbini_order_thanks: *komoju-order-thanks
-    bank_transfer_order_thanks: *komoju-order-thanks
     konbini_instructions:
       one_code: &komoju-konbini-instructions-one-code
         "コンビニ決済には『%{receipt_number}』が必要です。"
@@ -42,6 +41,7 @@ ja:
       daily-yamazaki: *komoju-konbini-instructions-one-code
       seven-eleven: *komoju-konbini-instructions-one-code
     konbini_how_to_pay: "%{convenience}の支払方法"
+    bank_transfer_order_thanks: *komoju-order-thanks
     bank_transfer_instructions: "銀行振込の支払方法については以下のリンクをご参考ください"
     bank_transfer_how_to_pay: "銀行振込の支払方法"
     payeasy_order_thanks: *komoju-order-thanks
