@@ -1,24 +1,18 @@
 <div>
   <p>
-    Thank you for your order. Instructions have been sent to your e-mail address.<br/>
-    Please follow the link below to complete your purchase:
+    <%= Spree.t(:payeasy_order_thanks) %><br/>
+    <%= Spree.t(:payeasy_instructions) %>
   </p>
 
   <%= link_to source.instructions_url do %>
-    How to pay with PayEasy
+    <%= Spree.t(:payeasy_how_to_pay) %>
   <% end %>
 </div>
 <br>
 
-<div class='alert alert-info' role='alert'>
-  <dl>
-    <dt>Bank Number</dt>
-    <dd><%= source.bank_id %></dd>
-    <dt>Customer Number</dt>
-    <dd><%= source.customer_id %></dd>
-    <dt>Confirmation Number</dt>
-    <dd><%= source.confirmation_id %></dd>
-    <dt>Expiry Date</dt>
-    <dd><%= l source.expires_at.in_time_zone("Tokyo"), format: :short %></dd>
-  </dl>
-</div>
+<table class="table table-condensed table-bordered">
+  <tr class="info"><td><%= Spree::PayEasy.human_attribute_name(:bank_id) %></td><td><%= source.bank_id %></td></tr>
+  <tr class="info"><td><%= Spree::PayEasy.human_attribute_name(:customer_id) %></td><td><%= source.customer_id %></td></tr>
+  <tr class="info"><td><%= Spree::PayEasy.human_attribute_name(:confirmation_id) %></td><td><%= source.confirmation_id %></td></tr>
+  <tr class="info"><td><%= Spree::PayEasy.human_attribute_name(:expires_at) %></td><td><%= source.expires_at %></td></tr>
+</table>

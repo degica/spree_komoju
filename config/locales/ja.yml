@@ -44,6 +44,9 @@ ja:
     konbini_how_to_pay: "%{convenience}の支払方法"
     bank_transfer_instructions: "銀行振込の支払方法については以下のリンクをご参考ください"
     bank_transfer_how_to_pay: "銀行振込の支払方法"
+    payeasy_order_thanks: *komoju-order-thanks
+    payeasy_instructions: "PayEasy支払いについては以下のリンクをご参考ください"
+    payeasy_how_to_pay: "PayEasyの支払方法"
     komoju:
       attributes: &komoju-payment-details
         email: メール
@@ -56,9 +59,9 @@ ja:
         prepaid_number: プリペイド番号
         order_id: 振込番号
         expires_at: 有効期限
-        bank_id: "PayEasy支払い時に必要となるお客様番号"
-        customer_id: "PayEasy支払い時に必要となるお客様番号"
-        confirmation_id: "PayEasy支払い時に必要となるお客様番号"
+        bank_id: 収納機関番号
+        customer_id: お客様番号
+        confirmation_id: 確認番号
       web_money:
         balance_remaining: 不足額
         points: ポイント
