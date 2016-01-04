@@ -15,10 +15,51 @@ ja:
     family_name: 姓
     given_name_kana: 名 (カタカナ)
     family_name_kana: 姓 (カタカナ)
-  activerecord:
-    attributes:
-      spree/pay_easy:
-        given_name_kana: 名 (カタカナ)
-        family_name_kana: 姓 (カタカナ)
+    konbini_receipt_number:
+      circle-k: オンライン決済番号
+      daily-yamazaki: オンライン決済番号
+      family-mart: お客様番号
+      lawson: お客様番号
+      ministop: お客様番号
+      seven-eleven: 払込票番号
+      sunkus: オンライン決済番号
+    konbini_confirmation_number: 確認番号
+    konbini_end_date: お支払い期限
+    konbini_thanks: "ご注文ありがとうございました。お支払い内容については、メールでもお送りしていますのでご確認ください。"
+    konbini_instructions:
+      one_code: &komoju-konbini-instructions-one-code
+        "コンビニ決済には『%{receipt_number}』が必要です。"
+      two_codes: &komoju-konbini-instructions-two-codes
+        "コンビニ決済には『確認番号』と『%{receipt_number}』が必要です。"
+      lawson: *komoju-konbini-instructions-two-codes
+      family-mart: *komoju-konbini-instructions-two-codes
+      mini-stop: *komoju-konbini-instructions-two-codes
+      sunkus: *komoju-konbini-instructions-one-code
+      circle-k: *komoju-konbini-instructions-one-code
+      daily-yamazaki: *komoju-konbini-instructions-one-code
+      seven-eleven: *komoju-konbini-instructions-one-code
+    konbini_how_to_pay: "%{convenience}の支払方法"
+    komoju:
+      attributes: &komoju-payment-details
+        email: メール
+        phone: 電話番号
+        given_name_kana: フリガナ(名)
+        family_name_kana: フリガナ(姓)
         given_name: 名
         family_name: 姓
+        instructions_url: "支払方法ページへの URL"
+        prepaid_number: プリペイド番号
+        order_id: 振込番号
+        expires: 有効期限
+        bank_id: "PayEasy支払い時に必要となるお客様番号"
+        customer_id: "PayEasy支払い時に必要となるお客様番号"
+        confirmation_id: "PayEasy支払い時に必要となるお客様番号"
+      web_money:
+        balance_remaining: 不足額
+        points: ポイント
+        insufficient_funds: "残高不足です"
+  activerecord:
+    attributes:
+      spree/pay_easy: *komoju-payment-details
+      spree/web_money: *komoju-payment-details
+      spree/bank_transfer: *komoju-payment-details

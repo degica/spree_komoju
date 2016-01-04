@@ -1,17 +1,18 @@
+<% store_name = Spree.t("conveniences.#{source.convenience}") %>
+<% receipt_number = Spree.t("konbini_receipt_number.#{source.convenience}") %>
 <div>
-  Thank you for your order. Instructions have been sent to your e-mail address.<br>
-  To complete a payment at <%= source.convenience.camelcase %>, Receipt Number and Confirmation Number are required.<br>
+  <%= Spree.t(:konbini_thanks) %><br>
+  <%= Spree.t("konbini_instructions.#{source.convenience}", receipt_number: receipt_number) %><br>
   <br>
   <%= link_to source.instructions_url do %>
-    How to make a payment at <%= source.convenience.camelcase %>
+    <%= Spree.t(:konbini_how_to_pay, convenience: store_name) %>
   <% end %>
 </div>
 <br>
-<div class='alert alert-info' role='alert'>
-  <h4>Receipt Number</h4>
-  <p><%= source.receipt %></p>
-  <h4>Confirmation Number</h4>
-  <p><%= source.confirmation_code %></p>
-  <h4>End Date</h4>
-  <p><%= source.expires_at %></p>
-</div>
+<table class="table table-condensed table-bordered">
+<tr class="info"><td><%= receipt_number %></td><td><strong><%= source.receipt %></strong></td></tr>
+<% if source.two_codes? %>
+  <tr class="info"J><td><%= Spree.t(:konbini_confirmation_number) %></td><td><strong><%= source.confirmation_code %></strong></td></tr>
+<% end %>
+<tr class="info"><td><%= Spree.t(:konbini_end_date) %></td><td><strong><%= source.expires_at %></strong></td></tr>
+</table>

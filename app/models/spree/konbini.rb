@@ -19,5 +19,9 @@ module Spree
     def imported
       false
     end
+
+    def two_codes?
+      %w[lawson family-mart ministop].include?(convenience)
+    end
   end
 end
