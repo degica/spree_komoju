@@ -7,6 +7,9 @@
   <%= link_to source.instructions_url do %>
     <%= Spree.t(:konbini_how_to_pay, convenience: store_name) %>
   <% end %>
+
+  <br><br>
+  <p><b><%= Spree.t(:payment_fee, fee: "185円") %></b></p>
 </div>
 <br>
 <table class="table table-condensed table-bordered">

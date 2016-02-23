@@ -1,5 +1,6 @@
 en:
   spree:
+    payment_fee: "Note: There is an additional %{fee} fee when paying with this payment method."
     pay_easy: Pay Easy
     bank_transfer: Bank Transfer
     web_money: WebMoney
