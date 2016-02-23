@@ -1,5 +1,6 @@
 ja:
   spree:
+    payment_fee: "※ お支払い金額は、商品代金と「決済手数料: %{fee}」を合計した金額となります。"
     pay_easy: Pay Easy
     conveniences:
       lawson: ローソン
