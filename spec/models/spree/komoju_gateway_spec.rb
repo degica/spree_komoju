@@ -13,7 +13,7 @@ describe Spree::KomojuGateway, type: :model do
       allow(subject).to receive(:preferred_api_key) { api_key }
       allow(subject).to receive(:preferred_test) { true }
 
-      expect(subject.options).to eq ({ api_key: nil, test: true, server: "test", test_mode: true, login: api_key })
+      expect(subject.options).to eq ({ api_key: nil, test: true, server: "test", test_mode: true, login: api_key, locale: "en" })
     end
   end
 
