@@ -7,7 +7,7 @@ module Spree
     end
 
     def options
-      super.merge(login: preferred_api_key, test: preferred_test_mode)
+      super.merge(login: preferred_api_key, test: preferred_test_mode, locale: locale)
     end
 
     def auto_capture?
@@ -42,6 +42,12 @@ module Spree
 
     def payment_source_class
       "Spree::#{gateway_type.camelcase}".constantize
+    end
+
+    private
+
+    def locale
+      I18n.locale == :ja ? "ja" : "en"
     end
   end
 end
