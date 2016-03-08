@@ -1,9 +1,9 @@
 <div class="well clearfix">
   <% param_prefix = "payment_source[#{payment_method.id}]" %>
 
-  <% Spree::Konbini::STORES.each do |store| %>
+  <% Spree::Konbini::STORES.each_with_index do |store, index| %>
     <label>
-      <%= radio_button "#{param_prefix}", "convenience", store %>
+      <%= radio_button "#{param_prefix}", "convenience", store, checked: index.zero? %>
       <%= image_tag "#{store}.png" %>
       <span><%= Spree.t("conveniences.#{store}") %></span>
     </label><br />
