@@ -13,6 +13,17 @@ module SpreeKomoju
       app.config.spree.payment_methods << Spree::Gateway::KomojuBankTransfer
       app.config.spree.payment_methods << Spree::Gateway::KomojuPayEasy
       app.config.spree.payment_methods << Spree::Gateway::KomojuWebMoney
+
+      Spree::PermittedAttributes.source_attributes.push(
+        :convenience,
+        :email,
+        :phone,
+        :family_name,
+        :given_name,
+        :family_name_kana,
+        :given_name_kana,
+        :prepaid_number
+      )
     end
 
     # use rspec for tests
