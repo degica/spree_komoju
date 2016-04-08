@@ -58,13 +58,6 @@ describe Spree::Gateway::KomojuCreditCard, type: :model do
       expect(komoju_gateway).to receive(:refund).with(cent_amount, response_code, {})
       subject.credit(cent_amount, source, response_code, {})
     end
-
-    context "when currency is JPY" do
-      it "receives dollar amount" do
-        expect(komoju_gateway).to receive(:refund).with(100.0, response_code, {})
-        subject.credit(cent_amount, source, response_code, {currency: "JPY"})
-      end
-    end
   end
 
   describe "#void" do

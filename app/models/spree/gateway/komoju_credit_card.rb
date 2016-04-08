@@ -5,7 +5,6 @@ module Spree
     end
 
     def credit(money, source, response_code, gateway_options)
-      money = cents_to_dollar(money) if gateway_options[:currency] == "JPY"
       provider.refund(money, response_code, {})
     end
 
@@ -53,12 +52,6 @@ module Spree
 
     def payment_profiles_supported?
       true
-    end
-
-    private
-
-    def cents_to_dollar(amount)
-      amount / 100.0
     end
   end
 end
