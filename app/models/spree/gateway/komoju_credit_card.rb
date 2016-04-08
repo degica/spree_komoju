@@ -4,7 +4,7 @@ module Spree
       true
     end
 
-    def credit(money, source, response_code, gateway_options)
+    def credit(money, source, response_code, refund_options)
       provider.refund(money, response_code, {})
     end
 
