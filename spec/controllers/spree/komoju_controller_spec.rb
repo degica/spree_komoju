@@ -65,9 +65,9 @@ describe Spree::KomojuController, type: :controller do
       end
 
       context 'when type is not recognized' do
-        it 'returns an unauthorized status code' do
+        it 'returns an 200 status code' do
           post :callback, {type: "bad_type"} 
-          expect(response.status).to eq(401)
+          expect(response.status).to eq(200)
         end 
       end
     end  
