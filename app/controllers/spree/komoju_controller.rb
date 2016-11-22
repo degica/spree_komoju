@@ -18,11 +18,19 @@ module Spree
     private
 
     def order_number
-      extract_payment_number(params[:data][:external_order_num])
+      params[:data][:external_order_num].split("-").try(:first)
+    end
+
+    def payment_number
+      params[:data][:external_order_num].split("-").try(:last)
+    end
+
+    def order
+      @order ||= Spree::Order.find_by_number!(order_number)
     end
 
     def payment
-      @payment ||= Spree::Payment.find_by_number!(order_number)
+      @payment ||= order.payments.find_by_number!(payment_number)
     end
 
     def payment_captured!
@@ -36,10 +44,6 @@ module Spree
         reason = Spree::RefundReason.new(name: description)
         payment.refunds.create!(amount: payment.amount, reason: reason, transaction_id: refund[:id])
       end
-    end
-
-    def extract_payment_number(external_order_num)
-      external_order_num.split('-').try(:last)
     end
 
     def callback_verified?

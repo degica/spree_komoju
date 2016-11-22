@@ -19,7 +19,8 @@ describe Spree::KomojuController, type: :controller do
       end
 
       context 'when type is payment.refunded' do
-        let(:payment) { create :payment, state: state, number: "PAYMENTID" }
+        let(:order) { create :order, number: "SPREEORDER" }
+        let(:payment) { create :payment, order: order, state: state, number: "PAYMENTID" }
         let(:refund_description) { "Test refund" }
         let(:refund_params) do
           {
@@ -72,7 +73,7 @@ describe Spree::KomojuController, type: :controller do
             let(:completed) { true }
 
             it 'does nothing' do
-              allow(Spree::Payment).to receive(:find_by_number!) { payment }
+              allow_any_instance_of(Spree::KomojuController).to receive(:payment) { payment }
 
               post :callback, capture_params
 
@@ -84,7 +85,7 @@ describe Spree::KomojuController, type: :controller do
             let(:completed) { false }
 
             it 'marks a payment as complete' do
-              allow(Spree::Payment).to receive(:find_by_number!) { payment }
+              allow_any_instance_of(Spree::KomojuController).to receive(:payment) { payment }
 
               post :callback, capture_params
 
