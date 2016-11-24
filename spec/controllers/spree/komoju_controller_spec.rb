@@ -21,14 +21,14 @@ describe Spree::KomojuController, type: :controller do
       context 'when type is payment.refunded' do
         let(:order) { create :order, number: "SPREEORDER" }
         let(:payment) { create :payment, order: order, state: state, number: "PAYMENTID" }
-        let(:refund_description) { "Test refund" }
         let(:refund_params) do
           {
             "type" => "payment.refunded",
             "data" => {
               "external_order_num" => "SPREEORDER-PAYMENTID",
               "refunds" => [{
-                "description": refund_description
+                "id": "REFUND_ID",
+                "description": "My description"
               }]
             }
           }
@@ -50,7 +50,7 @@ describe Spree::KomojuController, type: :controller do
               expect { post :callback, refund_params }.to change {payment.refunds.count}.from(0).to(1)
               refund = payment.refunds.first
               expect(refund.amount).to eq payment.amount
-              expect(refund.reason.name).to eq "Test refund"
+              expect(refund.reason.name).to eq "My description"
             end
           end
 
