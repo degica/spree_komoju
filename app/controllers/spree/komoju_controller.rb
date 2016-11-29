@@ -43,6 +43,7 @@ module Spree
         description = refund[:description].blank? ? "Komoju refund" : refund[:description]
         reason = Spree::RefundReason.find_or_create_by!(name: description)
         payment.refunds.create!(amount: payment.amount, reason: reason, transaction_id: refund[:id])
+        order.updater.update
       end
     end
 

@@ -19,13 +19,13 @@ describe Spree::KomojuController, type: :controller do
       end
 
       context 'when type is payment.refunded' do
-        let(:order) { create :order, number: "SPREEORDER" }
-        let(:payment) { create :payment, order: order, state: state, number: "PAYMENTID" }
+        let(:payment) { order.payments.first! }
+
         let(:refund_params) do
           {
             "type" => "payment.refunded",
             "data" => {
-              "external_order_num" => "SPREEORDER-PAYMENTID",
+              "external_order_num" => "#{order.number}-#{payment.number}",
               "refunds" => [{
                 "id": "REFUND_ID",
                 "description": "My description"
@@ -34,26 +34,31 @@ describe Spree::KomojuController, type: :controller do
           }
         end
 
-        context "when payment exists" do
-          context 'when payment has not been completed yet' do
-            let(:state) { "pending" }
+        context 'when payment has not been completed yet' do
+          let(:order) { create :completed_order_with_pending_payment }
 
-            it 'does nothing' do
-              expect { post :callback, refund_params }.not_to change {payment.refunds.count}
-            end
+          it 'does nothing' do
+            expect { post :callback, refund_params }.not_to change {payment.refunds.count}
           end
+        end
 
-          context 'when payment has already been completed' do
-            let(:state) { "completed" }
+        context 'when payment has already been completed' do
+          let(:order) { create :order_ready_to_ship }
 
-            it 'does nothing' do
-              expect { post :callback, refund_params }.to change {payment.refunds.count}.from(0).to(1)
-              refund = payment.refunds.first
-              expect(refund.amount).to eq payment.amount
-              expect(refund.reason.name).to eq "My description"
-            end
+          it 'adds refund and updates order' do
+            expect(order.shipment_state).to eq "ready"
+            expect(order.payment_state).to eq "paid"
+
+            expect { post :callback, refund_params }.to change { payment.refunds.count }.from(0).to(1)
+
+            order.reload
+            expect(order.shipment_state).to eq "pending"
+            expect(order.payment_state).to eq "balance_due"
+
+            refund = payment.refunds.first
+            expect(refund.amount).to eq payment.amount
+            expect(refund.reason.name).to eq "My description"
           end
-
         end
       end
 
