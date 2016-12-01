@@ -20,6 +20,7 @@ describe Spree::KomojuController, type: :controller do
 
       context 'when type is payment.refunded' do
         let(:payment) { order.payments.first! }
+        let(:refund_currency) { "USD" }
 
         let(:refund_params) do
           {
@@ -30,7 +31,7 @@ describe Spree::KomojuController, type: :controller do
                 "id" => "REFUND_ID",
                 "description" => "My description",
                 "amount" => 100*payment.amount, # cents
-                "currency" => "USD"
+                "currency" => refund_currency
               }]
             }
           }
@@ -47,24 +48,67 @@ describe Spree::KomojuController, type: :controller do
         context 'when payment has already been completed' do
           let(:order) { create :order_ready_to_ship }
 
-          it 'adds refund and updates order' do
-            expect(order.shipment_state).to eq "ready"
-            expect(order.payment_state).to eq "paid"
+          context 'incorrect currency' do
+            let(:refund_currency) { "CAD" }
+            it 'raises SpreeKomoju::Errors::IncorrectCurrency error' do
+              expect { post :callback, refund_params }.to raise_error(SpreeKomoju::Errors::IncorrectCurrency)
+            end
+          end
 
-            expect { post :callback, refund_params }.to change { payment.refunds.count }.from(0).to(1)
-            expect(response.status).to eq 200
+          context 'single refund' do
+            it 'adds refund and updates order' do
+              expect(order.shipment_state).to eq "ready"
+              expect(order.payment_state).to eq "paid"
 
-            order.reload
-            expect(order.shipment_state).to eq "pending"
-            expect(order.payment_state).to eq "balance_due"
+              expect { post :callback, refund_params }.to change { payment.refunds.count }.from(0).to(1)
+              expect(response.status).to eq 200
 
-            refund = payment.refunds.first
-            expect(refund.amount).to eq payment.amount
-            expect(refund.reason.name).to eq "My description"
-            expect(payment.credit_allowed).to eq 0
+              order.reload
+              expect(order.shipment_state).to eq "pending"
+              expect(order.payment_state).to eq "balance_due"
 
-            # Does nothing anymore
-            expect { post :callback, refund_params }.not_to change { payment.refunds.count }
+              refund = payment.refunds.first
+              expect(refund.amount).to eq payment.amount
+              expect(refund.reason.name).to eq "My description"
+              expect(payment.credit_allowed).to eq 0
+
+              # Does nothing anymore
+              expect { post :callback, refund_params }.not_to change { payment.refunds.count }
+            end
+          end
+
+          context 'multiple individual refunds' do
+            let(:refund_params) do
+              {
+                "type" => "payment.refunded",
+                "data" => {
+                  "external_order_num" => "#{order.number}-#{payment.number}",
+                  "refunds" => [
+                    {
+                      "id" => "REFUND_ID1",
+                      "amount" => 50*payment.amount,
+                      "currency" => "USD"
+                    },
+                    {
+                      "id" => "REFUND_ID2",
+                      "amount" => 50*payment.amount,
+                      "currency" => "USD"
+                    }
+                  ]
+                }
+              }
+            end
+
+            it 'adds refund and updates order' do
+              expect(order.shipment_state).to eq "ready"
+              expect(order.payment_state).to eq "paid"
+
+              expect { post :callback, refund_params }.to change { payment.refunds.count }.from(0).to(2)
+
+              order.reload
+              expect(order.shipment_state).to eq "pending"
+              expect(order.payment_state).to eq "balance_due"
+            end
           end
         end
       end
@@ -85,7 +129,7 @@ describe Spree::KomojuController, type: :controller do
             let(:completed) { true }
 
             it 'does nothing' do
-              allow_any_instance_of(Spree::KomojuController).to receive(:payment) { payment }
+              allow_any_instance_of(SpreeKomoju::Callbacks::Captured).to receive(:payment) { payment }
 
               post :callback, capture_params
 
@@ -97,7 +141,7 @@ describe Spree::KomojuController, type: :controller do
             let(:completed) { false }
 
             it 'marks a payment as complete' do
-              allow_any_instance_of(Spree::KomojuController).to receive(:payment) { payment }
+              allow_any_instance_of(SpreeKomoju::Callbacks::Captured).to receive(:payment) { payment }
 
               post :callback, capture_params
 
