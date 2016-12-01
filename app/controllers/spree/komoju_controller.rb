@@ -47,7 +47,7 @@ module Spree
 
     def refund_amount
       # Converts cents into dollars
-      ::Money.new(refund_params[:amount], "USD").to_f
+      ::Money.new(refund_params[:amount], refund_params[:currency]).to_f
     end
 
     def payment_refunded!
