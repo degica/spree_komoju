@@ -37,12 +37,23 @@ module Spree
       payment.complete! unless payment.completed?
     end
 
+    def refund_params
+      params[:data][:refunds].last
+    end
+
+    def refund_description
+      refund_params[:description].blank? ? "Komoju refund" : refund_params[:description]
+    end
+
+    def refund_amount
+      # Converts cents into dollars
+      ::Money.new(refund_params[:amount], "USD").to_f
+    end
+
     def payment_refunded!
-      if payment.completed?
-        refund = params[:data][:refunds].last
-        description = refund[:description].blank? ? "Komoju refund" : refund[:description]
-        reason = Spree::RefundReason.find_or_create_by!(name: description)
-        payment.refunds.create!(amount: payment.amount, reason: reason, transaction_id: refund[:id])
+      if payment.completed? && payment.credit_allowed >= refund_amount && payment.currency == refund_params[:currency]
+        reason = Spree::RefundReason.find_or_create_by!(name: refund_description)
+        payment.refunds.create!(amount: refund_amount, reason: reason, transaction_id: refund_params[:id])
         order.updater.update
       end
     end

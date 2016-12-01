@@ -27,8 +27,10 @@ describe Spree::KomojuController, type: :controller do
             "data" => {
               "external_order_num" => "#{order.number}-#{payment.number}",
               "refunds" => [{
-                "id": "REFUND_ID",
-                "description": "My description"
+                "id" => "REFUND_ID",
+                "description" => "My description",
+                "amount" => 100*payment.amount, # cents
+                "currency" => "USD"
               }]
             }
           }
@@ -50,6 +52,7 @@ describe Spree::KomojuController, type: :controller do
             expect(order.payment_state).to eq "paid"
 
             expect { post :callback, refund_params }.to change { payment.refunds.count }.from(0).to(1)
+            expect(response.status).to eq 200
 
             order.reload
             expect(order.shipment_state).to eq "pending"
@@ -58,6 +61,10 @@ describe Spree::KomojuController, type: :controller do
             refund = payment.refunds.first
             expect(refund.amount).to eq payment.amount
             expect(refund.reason.name).to eq "My description"
+            expect(payment.credit_allowed).to eq 0
+
+            # Does nothing anymore
+            expect { post :callback, refund_params }.not_to change { payment.refunds.count }
           end
         end
       end
