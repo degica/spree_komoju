@@ -7,19 +7,15 @@ module Spree
 
       case params[:type]
       when "payment.captured"
-        order_number = extract_payment_number(params[:data][:external_order_num])
-        payment = Spree::Payment.find_by_number!(order_number)
-        payment.complete! unless payment.completed?
+        SpreeKomoju::Callbacks::Captured.new(params).process!
+      when "payment.refunded"
+        SpreeKomoju::Callbacks::Refunded.new(params).process!
       end
 
       head 200
     end
 
     private
-
-    def extract_payment_number(external_order_num)
-      external_order_num.split('-').try(:last)
-    end
 
     def callback_verified?
       request_body = request.body.read
