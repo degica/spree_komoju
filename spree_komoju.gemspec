@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_komoju'
-  s.version     = '0.1.1'
+  s.version     = '0.1.2'
   s.summary     = 'Spree Komoju Payment Gateway'
   s.description = 'Spree Payment gateway for Komoju payment gateway'
   s.authors     = ['Masahiro Saito', 'Chris Salzberg', 'Richard Ramsden']
