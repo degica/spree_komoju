@@ -107,7 +107,12 @@ module ActiveMerchant #:nodoc:
         begin
           raw_response = ssl_request(method, "#{url}#{path}", data, headers)
         rescue ResponseError => e
-          raw_response = e.response.body
+          raw_response = case e.response.code.to_i
+          when 504
+            {error: {code: "gateway_timeout", message: Spree.t(:payment_processing_failed)}}.to_json
+          else
+            e.response.body
+          end
         end
 
         JSON.parse(raw_response)
