@@ -1,8 +1,6 @@
 # THIS GEM IS DEPRECATED
 
-```
 This gem is no longer maintained by Degica. Please consult the [Komoju Docs](https://docs.komoju.com) for other ways of integrating your e-commerce site with Komoju.
-```
 
 SpreeKomoju
 ===========
